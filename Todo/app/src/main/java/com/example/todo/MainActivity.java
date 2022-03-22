@@ -13,21 +13,21 @@ import java.util.ArrayList;
 
 public class MainActivity<adapter> extends AppCompatActivity {
     private ArrayList<String> items;
-    private ArrayAdapter<String> itemsAdapter;
-    private ListView lvItems;
+    private ArrayAdapter<String> Adaptor_for_things;
+    private ListView Items;
 
 
     private void setupListViewListener() {
-        lvItems.setOnItemLongClickListener(
+        Items.setOnItemLongClickListener(
                 new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapter,
                                                    View item, int pos, long id) {
-                        // Remove the item within array at position
+                        // Remove the item at position in the array.
                         items.remove(pos);
-                        // Refresh the adapter
-                        itemsAdapter.notifyDataSetChanged();
-                        // Return true consumes the long click event (marks it handled)
+                        // Recharge the adapter.
+                        Adaptor_for_things.notifyDataSetChanged();
+                        // The lengthy click event is consumed when you return true.
                         return true;
                     }
 
@@ -38,19 +38,19 @@ public class MainActivity<adapter> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        lvItems = (ListView) findViewById(R.id.lvItems);
+        Items = (ListView) findViewById(R.id.Items);
         items = new ArrayList<String>();
-        itemsAdapter = new ArrayAdapter<String>(this,
+        Adaptor_for_things = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items);
-        lvItems.setAdapter(itemsAdapter);
-        items.add("Item1");
-        items.add("Item2");
+        Items.setAdapter(Adaptor_for_things);
+        items.add("Item1"); // To add item 1
+        items.add("Item2"); // To add item 2
         setupListViewListener();
     }
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
-        itemsAdapter.add(itemText);
+        Adaptor_for_things.add(itemText);
         etNewItem.setText("");
 
     }
